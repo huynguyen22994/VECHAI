@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Script from 'next/script'
 import Axios from '@/helper/axios.helper'
+import { useEffect } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,10 +19,22 @@ export async function getStaticProps() {
 }
 
 export default function Home({ data }) {
+
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
   const handle = () => {
     window.alert('test nè')
   }
-  // console.log('FrontEnd nè', data)
+  
+  useEffect(() => {
+    setCookie('nextjs', 'huyytest', 2)
+  }, [])
+
   return (
     <>
       <Head>

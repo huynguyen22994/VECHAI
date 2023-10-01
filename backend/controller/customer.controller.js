@@ -3,6 +3,7 @@
 const CryptoJS = require("crypto-js");
 const JWT = require('jsonwebtoken')
 const CustomerModel = require('../model/customer.repo')
+const { sendMail } = require('../helper/mail.helper')
 
 const SECRECT_KEY = '123'
 
@@ -30,6 +31,20 @@ class CustomerController {
                 fullname: fullname, 
                 password: passwordCipher 
             })
+            if(results) {
+                // send mail
+                sendMail({
+                    to: email,
+                    subject: 'Tạo tài khoản thành công. Vui lòng xác thực tài khoản',
+                    text: 'Xác thực tài khoản',
+                    html: `
+                        <label>Bạn vừa tạo thành công tài khoản</label>
+                        <p>Vui lòng click vào đường dẫn bên dưới để kích hoạt tài khoản</p>
+                        <br>
+                        <a href="locahost:3000">Click vào đây</a>
+                    `
+                })
+            }
 
             res.status(200).json({
                 code: 200,

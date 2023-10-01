@@ -8,7 +8,7 @@ import Axios from '@/helper/axios.helper'
 const inter = Inter({ subsets: ['latin'] })
 
 export async function getStaticProps() {
-  // const { data } = await Axios.get('/api/product')
+  const { data } = await Axios.get('/api/product')
 
   return {
     props: {

@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 module.exports = axios.create({
-    baseURL: process.env['SERVERHOST'],
+    baseURL: process.env['SERVERHOST'], // port 8000
     // timeout: 1000,
     // headers: {'x-api-key': process.env['APIKEY']}
 });
