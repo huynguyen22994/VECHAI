@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import Script from "next/script";
 import Axios from "@/helper/axios.helper";
 import { useEffect } from "react";
+import dynamic from 'next/dynamic'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,10 @@ export async function getStaticProps() {
 }
 
 export default function Home({ data }) {
+  const Map = dynamic(() => import("@/components/Map"), {
+    ssr: false,
+    loading: () => <p>Loading...</p>,
+  });     
   const handle = () => {
     window.alert("test nè");
   };
@@ -34,71 +39,71 @@ export default function Home({ data }) {
       <Script src="https://example.com/script.js" />
       <main>
         {/* <!-- Dashboard --> */}
-        <div class="dashboard">
+        <div className="dashboard">
           {/* <!-- Sidebar --> */}
-          <div class="sidebar flex-c flex-sb">
-            <div class="brand">NFT LAB</div>
-            <div class="side-nav">
-              <div class="menu-item flex active">
-                <div class="icon">
+          <div className="sidebar flex-c flex-sb">
+            <div className="brand">VECHAI</div>
+            <div className="side-nav">
+              <div className="menu-item flex active">
+                <div className="icon">
                   <ion-icon name="grid"></ion-icon>
                 </div>
 
                 <p>Dashboard</p>
               </div>
 
-              <div class="menu-item flex">
-                <div class="icon">
+              <div className="menu-item flex">
+                <div className="icon">
                   <ion-icon name="magnet-outline"></ion-icon>
                 </div>
 
                 <p>Active Bids</p>
               </div>
 
-              <div class="menu-item flex">
-                <div class="icon">
+              <div className="menu-item flex">
+                <div className="icon">
                   <ion-icon name="storefront-outline"></ion-icon>
                 </div>
 
                 <p>Market</p>
               </div>
 
-              <div class="menu-item flex">
-                <div class="icon">
+              <div className="menu-item flex">
+                <div className="icon">
                   <ion-icon name="heart-circle-outline"></ion-icon>
                 </div>
 
                 <p>Favourite</p>
               </div>
 
-              <div class="border"></div>
+              <div className="border"></div>
 
-              <div class="menu-item flex">
-                <div class="icon">
+              <div className="menu-item flex">
+                <div className="icon">
                   <ion-icon name="reader-outline"></ion-icon>
                 </div>
 
                 <p>My Portfolio</p>
               </div>
 
-              <div class="menu-item flex">
-                <div class="icon">
+              <div className="menu-item flex">
+                <div className="icon">
                   <ion-icon name="bookmark-outline"></ion-icon>
                 </div>
 
                 <p>History</p>
               </div>
 
-              <div class="menu-item flex">
-                <div class="icon">
+              <div className="menu-item flex">
+                <div className="icon">
                   <ion-icon name="wallet-outline"></ion-icon>
                 </div>
 
                 <p>Wallet</p>
               </div>
 
-              <div class="menu-item flex">
-                <div class="icon">
+              <div className="menu-item flex">
+                <div className="icon">
                   <ion-icon name="settings-outline"></ion-icon>
                 </div>
 
@@ -106,9 +111,9 @@ export default function Home({ data }) {
               </div>
             </div>
 
-            <div class="log-out">
-              <div class="menu-item flex">
-                <div class="icon">
+            <div className="log-out">
+              <div className="menu-item flex">
+                <div className="icon">
                   <ion-icon name="log-out-outline"></ion-icon>
                 </div>
 
@@ -119,30 +124,30 @@ export default function Home({ data }) {
           {/* <!-- End Sidebar --> */}
 
           {/* <!-- Dashboard Content --> */}
-          <div class="dashboard-content">
+          <div className="dashboard-content">
             {/* <!-- ======Topbar======= --> */}
-            <div class="topbar flex flex-sb">
-              <div class="search flex">
-                <div class="icon">
+            <div className="topbar flex flex-sb">
+              <div className="search flex">
+                <div className="icon">
                   <ion-icon name="search-outline"></ion-icon>
                 </div>
                 <input type="text" placeholder=" Search any collection" />
               </div>
 
-              <div class="theme flex">
-                <div class="dark flex">
+              <div className="theme flex">
+                <div className="dark flex">
                   <ion-icon name="moon-outline"></ion-icon>
                 </div>
-                <div class="light active flex">
+                <div className="light active flex">
                   <ion-icon name="sunny-outline"></ion-icon>
                 </div>
               </div>
 
-              <div class="notification icon">
+              <div className="notification icon">
                 <ion-icon name="notifications-outline"></ion-icon>
               </div>
 
-              <div class="user flex flex-sb">
+              <div className="user flex flex-sb">
                 <img
                   src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                   alt=""
@@ -154,18 +159,18 @@ export default function Home({ data }) {
             {/* <!-- ======End Topbar======= --> */}
 
             {/* <!-- ======Section======= --> */}
-            <div class="section flex flex-sb">
+            <div className="section flex flex-sb">
               {/* <!-- Section Left --> */}
-              <div class="section-left">
+              <div className="section-left">
                 {/* <!-- ======Banner======= --> */}
-                <div class="banner flex flex-sb">
-                  <div class="text">
+                <div className="banner flex flex-sb">
+                  <div className="text">
                     <h2>
                       Dicover and sell <br />
                       your own NFTs
                     </h2>
 
-                    <a href="#" class="btn">
+                    <a href="#" className="btn">
                       Discover Now
                     </a>
                   </div>
@@ -176,112 +181,113 @@ export default function Home({ data }) {
                   />
                 </div>
 
-                <div class="nfts">
-                  <div class="trending heading flex flex-sb">
+                <div className="nfts">
+                <Map></Map>
+                  <div className="trending heading flex flex-sb">
                     <h2>Trending NFTs</h2>
                     <p>See all</p>
                   </div>
 
                   {/* <!-- ======Categories======= --> */}
 
-                  <div class="categories flex flex-sb">
-                    <div class="category flex">
-                      <div class="icon">🔥</div>
+                  <div className="categories flex flex-sb">
+                    <div className="category flex">
+                      <div className="icon">🔥</div>
                       <p>Trending</p>
                     </div>
 
-                    <div class="category flex">
-                      <div class="icon">🎨</div>
+                    <div className="category flex">
+                      <div className="icon">🎨</div>
                       <p>Art</p>
                     </div>
 
-                    <div class="category flex">
-                      <div class="icon">🕹️</div>
+                    <div className="category flex">
+                      <div className="icon">🕹️</div>
                       <p>Game</p>
                     </div>
 
-                    <div class="category flex">
-                      <div class="icon">👗</div>
+                    <div className="category flex">
+                      <div className="icon">👗</div>
                       <p>Fashion</p>
                     </div>
 
-                    <div class="category flex">
-                      <div class="icon">🎵</div>
+                    <div className="category flex">
+                      <div className="icon">🎵</div>
                       <p>Music</p>
                     </div>
                   </div>
 
                   {/* <!-- =====Browse NFT===== --> */}
-                  <div class="browse">
-                    <div class="nft">
+                  <div className="browse">
+                    <div className="nft">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-1.jpg"
                         alt=""
                       />
-                      <div class="title">Weary Artwork</div>
-                      <div class="details flex flex-sb">
-                        <div class="author flex">
+                      <div className="title">Weary Artwork</div>
+                      <div className="details flex flex-sb">
+                        <div className="author flex">
                           <img
                             src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                             alt=""
                           />
                           <p>Hassnain Haider</p>
                         </div>
-                        <div class="price">4.5 ETH</div>
+                        <div className="price">4.5 ETH</div>
                       </div>
                     </div>
 
-                    <div class="nft">
+                    <div className="nft">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-2.jpg"
                         alt=""
                       />
-                      <div class="title">Spectrum of Color</div>
-                      <div class="details flex flex-sb">
-                        <div class="author flex">
+                      <div className="title">Spectrum of Color</div>
+                      <div className="details flex flex-sb">
+                        <div className="author flex">
                           <img
                             src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                             alt=""
                           />
                           <p>Hassnain Haider</p>
                         </div>
-                        <div class="price">4 ETH</div>
+                        <div className="price">4 ETH</div>
                       </div>
                     </div>
 
-                    <div class="nft">
+                    <div className="nft">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-3.jpg"
                         alt=""
                       />
-                      <div class="title">Vivid Artwork</div>
-                      <div class="details flex flex-sb">
-                        <div class="author flex">
+                      <div className="title">Vivid Artwork</div>
+                      <div className="details flex flex-sb">
+                        <div className="author flex">
                           <img
                             src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                             alt=""
                           />
                           <p>Hassnain Haider</p>
                         </div>
-                        <div class="price">3.5 ETH</div>
+                        <div className="price">3.5 ETH</div>
                       </div>
                     </div>
 
-                    <div class="nft">
+                    <div className="nft">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-4.jpg"
                         alt=""
                       />
-                      <div class="title">Nature's Love</div>
-                      <div class="details flex flex-sb">
-                        <div class="author flex">
+                      <div className="title">Nature's Love</div>
+                      <div className="details flex flex-sb">
+                        <div className="author flex">
                           <img
                             src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                             alt=""
                           />
                           <p>Hassnain Haider</p>
                         </div>
-                        <div class="price">5 ETH</div>
+                        <div className="price">5 ETH</div>
                       </div>
                     </div>
                   </div>
@@ -289,8 +295,8 @@ export default function Home({ data }) {
               </div>
 
               {/* <!-- Section Right --> */}
-              <div class="section-right">
-                <div class="graph flex-c">
+              <div className="section-right">
+                <div className="graph flex-c">
                   <p>Balance</p>
                   <h2>93,565.00</h2>
 
@@ -300,110 +306,110 @@ export default function Home({ data }) {
                   />
                 </div>
 
-                <div class="top-creators">
-                  <div class="heading flex flex-sb">
+                <div className="top-creators">
+                  <div className="heading flex flex-sb">
                     <h2>Top Creators</h2>
                     <p>See all</p>
                   </div>
 
-                  <div class="creator flex flex-sb">
-                    <div class="follow-creator flex">
+                  <div className="creator flex flex-sb">
+                    <div className="follow-creator flex">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                         alt=""
                       />
-                      <div class="creator-details">
+                      <div className="creator-details">
                         <h3>Hassnain Haider</h3>
                         <p>@hassnain</p>
                       </div>
                     </div>
 
-                    <a href="#" class="btn following">
+                    <a href="#" className="btn following">
                       Following
                     </a>
                   </div>
 
-                  <div class="creator flex flex-sb">
-                    <div class="follow-creator flex">
+                  <div className="creator flex flex-sb">
+                    <div className="follow-creator flex">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                         alt=""
                       />
-                      <div class="creator-details">
+                      <div className="creator-details">
                         <h3>Hassnain Haider</h3>
                         <p>@hassnain</p>
                       </div>
                     </div>
 
-                    <a href="#" class="btn follow following">
+                    <a href="#" className="btn follow following">
                       Follow
                     </a>
                   </div>
 
-                  <div class="creator flex flex-sb">
-                    <div class="follow-creator flex">
+                  <div className="creator flex flex-sb">
+                    <div className="follow-creator flex">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                         alt=""
                       />
-                      <div class="creator-details">
+                      <div className="creator-details">
                         <h3>Hassnain Haider</h3>
                         <p>@hassnain</p>
                       </div>
                     </div>
 
-                    <a href="#" class="btn follow following">
+                    <a href="#" className="btn follow following">
                       Follow
                     </a>
                   </div>
 
-                  <div class="creator flex flex-sb">
-                    <div class="follow-creator flex">
+                  <div className="creator flex flex-sb">
+                    <div className="follow-creator flex">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                         alt=""
                       />
-                      <div class="creator-details">
+                      <div className="creator-details">
                         <h3>Hassnain Haider</h3>
                         <p>@hassnain</p>
                       </div>
                     </div>
 
-                    <a href="#" class="btn follow following">
+                    <a href="#" className="btn follow following">
                       Follow
                     </a>
                   </div>
 
-                  <div class="creator flex flex-sb">
-                    <div class="follow-creator flex">
+                  <div className="creator flex flex-sb">
+                    <div className="follow-creator flex">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                         alt=""
                       />
-                      <div class="creator-details">
+                      <div className="creator-details">
                         <h3>Hassnain Haider</h3>
                         <p>@hassnain</p>
                       </div>
                     </div>
 
-                    <a href="#" class="btn follow following">
+                    <a href="#" className="btn follow following">
                       Follow
                     </a>
                   </div>
 
-                  <div class="creator flex flex-sb">
-                    <div class="follow-creator flex">
+                  <div className="creator flex flex-sb">
+                    <div className="follow-creator flex">
                       <img
                         src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                         alt=""
                       />
-                      <div class="creator-details">
+                      <div className="creator-details">
                         <h3>Hassnain Haider</h3>
                         <p>@hassnain</p>
                       </div>
                     </div>
 
-                    <a href="#" class="btn follow following">
+                    <a href="#" className="btn follow following">
                       Follow
                     </a>
                   </div>
