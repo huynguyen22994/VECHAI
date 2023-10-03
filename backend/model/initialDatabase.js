@@ -9,10 +9,10 @@ const ShopModel = require('../model/shop.repo')
 
 connection(async () => {
     try {
-        await ShopModel.initTableToDB()
+        // await ShopModel.initTableToDB()
         await CustomerModel.initTableToDB() // promise
-        await CategoryModel.initTableToDB()
-        await ProductModel.initTableToDB()
+        // await CategoryModel.initTableToDB()
+        // await ProductModel.initTableToDB()
         console.log('All tables created success:::::')
     } catch(err) {
         console.log(err)

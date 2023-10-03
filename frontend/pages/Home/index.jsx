@@ -39,8 +39,8 @@ export default function Home() {
             </li>
           </div>
           <li><Link className={styles.linknav} href="#sanpham">Sản Phẩm</Link></li>
-          <li><Link className={styles.linknav} href="#">Giới Thiệu</Link></li>
-          <li className={styles.dn}><Link className={styles.linknav} href="/login">Đăng Nhập</Link></li>
+          <li><Link className={styles.linknav} href="#gt">Giới Thiệu</Link></li>
+          <li className={styles.dn}><Link className={styles.linknav} href="/Login">Đăng Nhập</Link></li>
           <button><a href='/signup' className={styles.btdt}>Dùng Thử</a></button>
         </ul>
       </div>
@@ -119,7 +119,7 @@ export default function Home() {
       </div>
 
 
-      <div className="grid-container">
+      <div id="gt"className="grid-container">
         <div className={styles.content1}>
           <Image
             src="/woman2.jpg"
