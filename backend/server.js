@@ -3,7 +3,8 @@ const cors = require('cors');
 const routes = require("./router");
 const mysqlDb = require('./model')
 const app = express();
-const port = 8000;
+app.set('port', process.argv[2] || 8000);
+const port = process.env.PORT || app.get('port');
 const bodyParser = require('body-parser')
 const session = require('express-session');
 
