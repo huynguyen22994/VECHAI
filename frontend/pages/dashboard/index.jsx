@@ -109,9 +109,9 @@ export default function Dashboard() {
                                         your own NFTs
                                     </h2>
 
-                                    <a href="#" className="btn">
+                                    <Link href="/" className="btn">
                                         Discover Now
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 <img
@@ -217,7 +217,7 @@ export default function Dashboard() {
                                             src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-4.jpg"
                                             alt=""
                                         />
-                                        <div className="title">Nature's Love</div>
+                                        <div className="title">Natures Love</div>
                                         <div className="details flex flex-sb">
                                             <div className="author flex">
                                                 <img
@@ -263,9 +263,9 @@ export default function Dashboard() {
                                         </div>
                                     </div>
 
-                                    <a href="#" className="btn following">
+                                    <Link href="/" className="btn following">
                                         Following
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 <div className="creator flex flex-sb">
@@ -280,9 +280,9 @@ export default function Dashboard() {
                                         </div>
                                     </div>
 
-                                    <a href="#" className="btn follow following">
+                                    <Link href="/" className="btn follow following">
                                         Follow
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 <div className="creator flex flex-sb">
@@ -297,9 +297,9 @@ export default function Dashboard() {
                                         </div>
                                     </div>
 
-                                    <a href="#" className="btn follow following">
+                                    <Link href="/" className="btn follow following">
                                         Follow
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 <div className="creator flex flex-sb">
@@ -314,9 +314,9 @@ export default function Dashboard() {
                                         </div>
                                     </div>
 
-                                    <a href="#" className="btn follow following">
+                                    <Link href="/" className="btn follow following">
                                         Follow
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 <div className="creator flex flex-sb">
@@ -331,9 +331,9 @@ export default function Dashboard() {
                                         </div>
                                     </div>
 
-                                    <a href="#" className="btn follow following">
+                                    <Link href="/" className="btn follow following">
                                         Follow
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 <div className="creator flex flex-sb">
@@ -348,9 +348,9 @@ export default function Dashboard() {
                                         </div>
                                     </div>
 
-                                    <a href="#" className="btn follow following">
+                                    <Link href="/" className="btn follow following">
                                         Follow
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

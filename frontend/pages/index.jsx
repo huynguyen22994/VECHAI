@@ -32,16 +32,16 @@ export default function Home() {
           <div className={styles.dropdown}>
             <li className={styles.nd}>Người Dùng <FaAngleDown className={styles.icon} />
               <div className={styles.drop}>
-                <a href="#">Chủ Vựa</a>
-                <a href="#">Người Bán</a>
-                <a href="#">Người Thu Mua</a>
+                <Link href="#">Chủ Vựa</Link>
+                <Link href="#">Người Bán</Link>
+                <Link href="#">Người Thu Mua</Link>
               </div>
             </li>
           </div>
           <li><Link className={styles.linknav} href="#sanpham">Sản Phẩm</Link></li>
           <li><Link className={styles.linknav} href="#">Giới Thiệu</Link></li>
           <li className={styles.dn}><Link className={styles.linknav} href="/login">Đăng Nhập</Link></li>
-          <button><a href='/signup' className={styles.btdt}>Dùng Thử</a></button>
+          <button><Link href='/signup' className={styles.btdt}>Dùng Thử</Link></button>
         </ul>
       </div>
     </nav>
@@ -56,9 +56,9 @@ export default function Home() {
         <div className={styles.content}>
           <h1 style={{ color: '#070a73' }}>MUA & BÁN VE CHAI<br /> TIỆN HƠN</h1>
           <p style={{ color: '#6c5a5a' }}>Website dành cho hoạt động mua bán ve chai diễn ra tiện lợi hơn <br /> với công nghệ hỗ trợ tìm kiếm người mua và người bán.</p>
-          <button style={{ marginLeft: '0px' }}><a href='/signup' className={styles.btdt}>Dùng Thử</a></button>
-          <p style={{ cursor: 'pointer', color: 'black' }}><a style={{ paddingLeft: '0px' }} href='/Login' className={styles.linknav}>
-            hoặc đăng nhập<BsChevronRight className={styles.icright} /></a></p>
+          <button style={{ marginLeft: '0px' }}><Link href='/signup' className={styles.btdt}>Dùng Thử</Link></button>
+          <p style={{ cursor: 'pointer', color: 'black' }}><Link style={{ paddingLeft: '0px' }} href='/Login' className={styles.linknav}>
+            hoặc đăng nhập<BsChevronRight className={styles.icright} /></Link></p>
         </div>
       </div>
 
@@ -133,9 +133,9 @@ export default function Home() {
           <p style={{ color: 'GrayText', fontSize: '0.75rem' }}>
             Đăng thông báo có ve chai cần bán và tìm vựa ve chai gần nhất.
           </p>
-          <a href="#" style={{ cursor: 'pointer', fontFamily: 'math', background: 'none' }}>
+          <Link href="#" style={{ cursor: 'pointer', fontFamily: 'math', background: 'none' }}>
             Tìm hiểu thêm<BsArrowRightShort />
-          </a>
+          </Link>
 
         </div>
 
@@ -152,9 +152,9 @@ export default function Home() {
           <p style={{ color: 'GrayText', fontSize: '0.75rem' }}>
             Nhận thông báo có người cần bán ve chai và xem bản giá của các vựa ve chai.
           </p>
-          <a href="#" style={{ cursor: 'pointer', fontFamily: 'math', background: 'none' }}>
+          <Link href="#" style={{ cursor: 'pointer', fontFamily: 'math', background: 'none' }}>
             Tìm hiểu thêm<BsArrowRightShort />
-          </a>
+          </Link>
 
         </div>
 
@@ -171,9 +171,9 @@ export default function Home() {
           <p style={{ color: 'GrayText', fontSize: '0.75rem' }}>
             Kết nối đến nhiều người thu mua ve chai và khách hàng cần bán ve chai.
           </p>
-          <a href="#" style={{ cursor: 'pointer', fontFamily: 'math', background: 'none' }}>
+          <Link href="#" style={{ cursor: 'pointer', fontFamily: 'math', background: 'none' }}>
             Tìm hiểu thêm<BsArrowRightShort />
-          </a>
+          </Link>
         </div>
       </div>
 
