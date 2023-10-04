@@ -1,3 +1,4 @@
+
 var mysql = require('mysql')
 const { promisify } = require('util')
 require('dotenv').config()
@@ -9,14 +10,14 @@ var con = mysql.createConnection({
     password: process.env['MYSQL_PASSWORD'] || null
 });
 
-function connection(cb) {
-    con.connect(function(err){
-        if(err) throw err;
-        console.log("Database is Connected::::::");
-        // Tạo ra một phương thức query mới nhưng là hàm promise
-        con.querySync = promisify(con.query)
-        cb && cb();
-    });
+const connection = async (cb) => {
+    if(con.isConnected) return
+    con.connect = promisify(con.connect)
+    con.querySync = promisify(con.query)
+    await con.connect()
+    con.isConnected = true
+    console.log("Database is Connected::::::");
+    cb && cb();
 }
 
 function triggerDatabase() {
@@ -25,7 +26,6 @@ function triggerDatabase() {
         console.log("Database created");
     });
 }
-
 
 module.exports = {
     con,

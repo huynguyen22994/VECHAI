@@ -1,6 +1,6 @@
 'use strict'
 
-const { con } = require('../model/index')
+const { con } = require('../database/mysql')
 
 class CustomerModel {
 
@@ -40,13 +40,12 @@ class CustomerModel {
     static getCustomerByEmail = async (email) => {
         return new Promise((resolve, reject) => {
             con.query('SELECT * FROM customer WHERE email = ?', [email], function (error, results, fields) {
-                if (error) {
-                    reject(reject)
+                if (error){
+                    reject(error)
                 }
-        
                 const foundShop = results[0] ? results[0] : null
                 resolve(foundShop)
-            });
+            })
         })
     }
 

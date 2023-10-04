@@ -34,7 +34,7 @@ const sendMail = async () => {
         html: "<b>Hello world?</b>", // html body
       });
 
-      console.log(info)
+      // console.log(info)
     } catch (err) {
         console.log(err)
     }

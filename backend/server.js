@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 const routes = require("./router");
-const mysqlDb = require('./model')
+const mysqlDb = require('./database/mysql')
 const app = express();
 app.set('port', process.argv[2] || 8000);
 const port = process.env.PORT || app.get('port');
@@ -28,8 +28,7 @@ app.all('/*', function(req, res, next) {
   next();
 });
 
-app.use(express.static(__dirname + '/public/build'));
-console.log(__dirname + '/public/build')
+app.use(express.static(__dirname + '/public'));
 
 app.use("/api", routes);
 

@@ -39,13 +39,13 @@ class CustomerController {
                     text: 'Xác thực tài khoản',
                     html: `
                         <label>Bạn vừa tạo thành công tài khoản</label>
-                        <p>Vui lòng click vào đường dẫn bên dưới để kích hoạt tài khoản</p>
+                        <p>Thông tin tài khoản của bạn</p>
                         <br>
-                        <a href="locahost:3000">Click vào đây</a>
+                        <p>Id: ${email}</p>
+                        <p>Password: ${password}</p>
                     `
                 })
             }
-
             res.status(200).json({
                 code: 200,
                 message: 'Create customer success!',
@@ -55,7 +55,7 @@ class CustomerController {
             res.status(500).json({
                 code: 500,
                 message: 'Error:::',
-                error: err
+                error: err.message
             })
         }
     }
