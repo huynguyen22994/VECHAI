@@ -61,33 +61,20 @@ export default function Dashboard({ userData }) {
       <main>
         <Layout pages={layoutPages} user={{ fullname, name, email }}>
           {/* <!-- ======Section======= --> */}
+          <div className="heading" style={{ marginTop: 20 }}>
+          <h2>Bản đồ vựa ve chai</h2>
+          <Map></Map>
+          </div>
           <div className="section flex flex-sb">
             {/* <!-- Section Left --> */}
             <div className="section-left">
               {/* <!-- ======Banner======= --> */}
-              <div className="banner flex flex-sb">
-                <div className="text">
-                  <h2>
-                    Dicover and sell <br />
-                    your own NFTs
-                  </h2>
-
-                  <Link href="/" className="btn">
-                    Discover Now
-                  </Link>
-                </div>
-
-                <img
-                  src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/banner.svg"
-                  alt=""
-                />
-              </div>
 
               <div className="nfts">
-                <Map></Map>
+
                 <div className="trending heading flex flex-sb">
-                  <h2>Trending NFTs</h2>
-                  <p>See all</p>
+                  <h2>Bài đăng ve chai cần bán</h2>
+                  <p>Xem nhiều hơn</p>
                 </div>
 
                 {/* <!-- ======Categories======= --> */}
@@ -198,20 +185,11 @@ export default function Dashboard({ userData }) {
 
             {/* <!-- Section Right --> */}
             <div className="section-right">
-              <div className="graph flex-c">
-                <p>Balance</p>
-                <h2>93,565.00</h2>
-
-                <img
-                  src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/graph.svg"
-                  alt=""
-                />
-              </div>
 
               <div className="top-creators">
                 <div className="heading flex flex-sb">
-                  <h2>Top Creators</h2>
-                  <p>See all</p>
+                  <h2>Top thu mua</h2>
+                  <p>Xem thêm</p>
                 </div>
 
                 <div className="creator flex flex-sb">

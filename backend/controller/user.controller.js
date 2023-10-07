@@ -2,7 +2,7 @@
 
 const CryptoJS = require("crypto-js");
 const JWT = require('jsonwebtoken')
-const CustomerModel = require('../model/customer.repo')
+const UserModel = require('../model/user.repo')
 const { sendMail } = require('../helper/mail.helper')
 
 const SECRECT_KEY = '123'
@@ -18,18 +18,19 @@ class CustomerController {
     static signUp = async (req, res, next) => {
         try {
             // 1.
-            const { password, email, fullname } = req.body
-            if(!password || !email || !fullname) throw new Error('Inputs are not valid!!')
+            const { password, email, fullname, phonenumber, role_id  } = req.body
+            if(!password || !email || !fullname || !phonenumber || !role_id) throw new Error('Inputs are not valid!!')
             // 2.
-            const foundCustomer = await CustomerModel.getCustomerByEmail(email)
+            const foundCustomer = await UserModel.getCustomerByEmail(email)
             if(foundCustomer) throw new Error(`Customer existing`)
             // 3.
             const passwordCipher = CryptoJS.AES.encrypt(password, SECRECT_KEY).toString();
             // 4.
-            const results = await CustomerModel.create({ 
+            const results = await UserModel.create({ 
                 email: email, 
                 fullname: fullname, 
-                password: passwordCipher 
+                password: passwordCipher,
+                phonenumber, role_id
             })
             if(results) {
                 // send mail
@@ -73,7 +74,7 @@ class CustomerController {
         try {
             const { email, password } = req.body
             // 1.
-            const foundCustomer = await CustomerModel.getCustomerByEmail(email)
+            const foundCustomer = await UserModel.getCustomerByEmail(email)
             // 2.
             if(!foundCustomer) throw new Error('User not exist!')
             // 3.
@@ -84,7 +85,7 @@ class CustomerController {
             // 5.
             const token = await JWT.sign({ id: foundCustomer.id, email: foundCustomer.email }, SECRECT_KEY, { expiresIn: '12h' })
             // 6.
-            const updateResult = await CustomerModel.updateToken({ id: foundCustomer.id, token: token })
+            const updateResult = await UserModel.updateToken({ id: foundCustomer.id, token: token })
             if(!updateResult) throw new Error('Update token fail')
             // 7.
             res.status(200).json({
@@ -112,11 +113,19 @@ class CustomerController {
     static authenCustomer = async (req, res, next) => {
         const customerId = req.headers["customer-id"]
         const customerEmail = req.headers["customer-email"]
-        console.log(req.headers["customer-id"])
-        
+        const customerRole =req.headers["customer-role"]
+
         res.json({
-            customerId, customerEmail
+            customerId, customerEmail, customerRole
         })
+    }
+
+    static getUserWithRole = async (req, res, next) => {
+        const customerId = req.headers["customer-id"]
+        // const customerEmail = req.headers["customer-email"]
+        // const customerRole =req.headers["customer-role"]
+        const result = await UserModel.getUserWithRole(parseInt(customerId))
+        res.json(result)
     }
 
 }

@@ -16,3 +16,13 @@ content-type: application/json
     "email": "huy.nguyen22994@gmail.com",
     "password": "123456"
 }
+
+### GET user data
+GET http://localhost:8000/api/customer/login
+content-type: application/json
+
+{
+    "email": "huy.nguyen22994@gmail.com",
+    "password": "123456"
+}
+

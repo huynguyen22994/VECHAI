@@ -1,6 +1,6 @@
 'use strict'
 const JWT = require('jsonwebtoken')
-const CustomerModel = require('../model/customer.repo')
+const UserModel = require('../model/user.repo')
 const ShopModel = require('../model/shop.repo')
 
 const SECRECT_KEY = '123'
@@ -12,10 +12,11 @@ const authentication = (req, res, next) => {
         if(!token ) throw new Error('Authen error')
         const verifyToken = JWT.verify(token, SECRECT_KEY)
         const { email, id } = verifyToken
-        CustomerModel.getCustomerByEmail(email).then((foundCustomer) => {
+        UserModel.getCustomerByEmail(email).then((foundCustomer) => {
             if(!foundCustomer) throw new Error('Authen fail')
             req.headers["customer-id"] = foundCustomer.id
             req.headers["customer-email"] = foundCustomer.email
+            req.headers["customer-role"] = foundCustomer.role_id
             next()
         }).catch(() => {
             throw new Error('Authen fail')
