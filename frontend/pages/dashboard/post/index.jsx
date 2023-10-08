@@ -61,9 +61,37 @@ export default function Dashboard({ userData }) {
       <main>
         <Layout pages={layoutPages} user={{ fullname, name, email }}>
           {/* <!-- ======Section======= --> */}
-          <div className="heading" style={{ marginTop: 20 }}>
-          <h2>Bản đồ vựa ve chai</h2>
-          <Map></Map>
+          <div className="heading" style={{ marginTop: 20, position: 'relative' }}>
+            <h2>Bản đồ vựa ve chai</h2>
+            <Map></Map>
+
+            <div className=" pane-map">
+              <div className="top-creators" style={{ borderRadius: '20px 0px' }}>
+                <div className="heading flex flex-sb">
+                  <h2>Vựa ve chai</h2>
+                  <p>Xem thêm</p>
+                </div>
+
+                <div className="creator flex flex-sb">
+                  <div className="follow-creator flex">
+                    <img
+                      src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                      alt=""
+                    />
+                    <div className="creator-details">
+                      <h3>Hassnain Haider</h3>
+                      <p>@hassnain</p>
+                    </div>
+                  </div>
+
+                  <Link href="/" className="btn following">
+                    Following
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+
           </div>
           <div className="section flex flex-sb">
             {/* <!-- Section Left --> */}
@@ -71,7 +99,6 @@ export default function Dashboard({ userData }) {
               {/* <!-- ======Banner======= --> */}
 
               <div className="nfts">
-
                 <div className="trending heading flex flex-sb">
                   <h2>Bài đăng ve chai cần bán</h2>
                   <p>Xem nhiều hơn</p>
@@ -185,7 +212,6 @@ export default function Dashboard({ userData }) {
 
             {/* <!-- Section Right --> */}
             <div className="section-right">
-
               <div className="top-creators">
                 <div className="heading flex flex-sb">
                   <h2>Top thu mua</h2>

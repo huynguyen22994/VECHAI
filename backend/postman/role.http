@@ -8,8 +8,8 @@ POST  http://localhost:8000/api/role/create
 content-type: application/json
 
 {
-    "name": "Người bán",
-    "accessApp": "dashboard, posts",
-    "description": "Dành cho người bán ve chai"
+    "name": "saler",
+    "accessApp": "dashboard",
+    "description": "Người thua mua ve chai"
 }
 

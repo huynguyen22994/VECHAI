@@ -10,7 +10,7 @@ const pages = [
     key: "dashboard",
     name: "Trang chủ",
     icon: <BsFillMoonStarsFill></BsFillMoonStarsFill>,
-    href: "/login",
+    href: "/dashboard",
   },
   {
     key: "posts",

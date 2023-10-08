@@ -33,7 +33,7 @@ export default function Layout({ pages = [], user = {},  children }) {
       <div className="dashboard">
         {/* <!-- Sidebar --> */}
         <div className="sidebar flex-c flex-sb">
-          <div className="brand">VeChai</div>
+          <div className="brand">VeChai <p style={{ fontSize: 12 }}>{ user.name }</p></div>
           <div className="side-nav">
             {/* <div className="menu-item flex active">
               <div className="icon">

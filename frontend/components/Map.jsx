@@ -7,10 +7,11 @@ import "leaflet/dist/leaflet.css";
  
 export default function Map() {
   const [count, setCount] = useState(0)
+  const center = [10.861481, 106.6194982]
   const position = [51.505, -0.09]
   const position1 = [51.567, -0.09]
   return (
-    <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: "300px", width: "100%" }}>
+    <MapContainer center={center} zoom={16} scrollWheelZoom={false} style={{ height: "300px", width: "100%" }}>
     <TileLayer
       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

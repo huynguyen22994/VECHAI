@@ -88,7 +88,7 @@ export default function Signup() {
               <option value=''>-Chọn Vai Trò-</option>
             {
               roles.map((role, index) => {
-                return <option key={index} value={ role.role_id }>{ role.name }</option>
+                return <option key={index} value={ role.role_id }>{ role.description }</option>
               })
             }
           </select>
