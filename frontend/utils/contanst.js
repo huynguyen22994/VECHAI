@@ -1,22 +1,43 @@
 import {
   BsSun,
-  BsFillMoonStarsFill,
+  BsFileRichtextFill,
   BsFillBellFill,
-  BsFillGridFill,
+  BsShop,
+  BsFillHouseFill,
+  BsPersonLinesFill,
+  BsFillPeopleFill
 } from "react-icons/bs";
 
 const pages = [
   {
     key: "dashboard",
     name: "Trang chủ",
-    icon: <BsFillMoonStarsFill></BsFillMoonStarsFill>,
+    icon: <BsFillHouseFill></BsFillHouseFill>,
     href: "/dashboard",
   },
   {
     key: "posts",
     name: "Bài đăng",
-    icon: <BsFillBellFill></BsFillBellFill>,
+    icon: <BsFileRichtextFill></BsFileRichtextFill>,
     href: "/dashboard/post",
+  },
+  {
+    key: "findbuyer",
+    name: "Tìm người mua",
+    icon: <BsPersonLinesFill></BsPersonLinesFill>,
+    href: "/dashboard/findbuyer",
+  },
+  {
+    key: "findscrapyard",
+    name: "Tìm vựa ve chai",
+    icon: <BsShop></BsShop>,
+    href: "/dashboard/findscrapyard",
+  },
+  {
+    key: "salebuyconnect",
+    name: "Lượt Kết Nối",
+    icon: <BsFillPeopleFill></BsFillPeopleFill>,
+    href: "/dashboard/salerbuyerconnect",
   },
   {
     key: "requests",

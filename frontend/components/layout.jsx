@@ -59,7 +59,7 @@ export default function Layout({ pages = [], user = {},  children }) {
               <div className="icon">
                 <ion-icon name="log-out-outline"></ion-icon>
               </div>
-              <p>Logout</p>
+              <p>Đăng xuất</p>
             </div>
           </div>
         </div>

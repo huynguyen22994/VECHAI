@@ -3,10 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {
-  BsSun,
-  BsFillMoonStarsFill,
-  BsFillBellFill,
-  BsFillGridFill,
+  BsFillPinMapFill
 } from "react-icons/bs";
 import dynamic from "next/dynamic";
 import Layout from "@/components/layout";
@@ -73,7 +70,7 @@ export default function Dashboard({ userData }) {
   );
 }
 
-function SalerComponent() {
+function BuyerComponent() {
   const Map = dynamic(() => import("@/components/Map"), {
     ssr: false,
     loading: () => <p>Loading...</p>,
@@ -344,7 +341,7 @@ function SalerComponent() {
   );
 }
 
-function BuyerComponent() {
+function SalerComponent() {
   const Map = dynamic(() => import("@/components/Map"), {
     ssr: false,
     loading: () => <p>Loading...</p>,
@@ -364,21 +361,39 @@ function BuyerComponent() {
               <p>Xem thêm</p>
             </div>
 
-            <div className="creator flex flex-sb">
-              <div className="follow-creator flex">
-                <img
-                  src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                  alt=""
-                />
-                <div className="creator-details">
-                  <h3>Vựa thanh đa</h3>
-                  <p>33 Thanh đa, Bình Thạnh</p>
+            <div style={{ overflowY: 'auto', height: 75 }}>
+              <div className="creator flex flex-sb">
+                <div className="follow-creator flex">
+                  <img
+                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                    alt=""
+                  />
+                  <div className="creator-details">
+                    <h3>Vựa thanh đa</h3>
+                    <p>33 Thanh đa, Bình Thạnh</p>
+                  </div>
                 </div>
-              </div>
 
-              <Link href="/" className="btn following">
-                Xem
-              </Link>
+                <Link href="/" className="btn following">
+                  <BsFillPinMapFill></BsFillPinMapFill>
+                </Link>
+              </div>
+              <div className="creator flex flex-sb">
+                <div className="follow-creator flex">
+                  <img
+                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                    alt=""
+                  />
+                  <div className="creator-details">
+                    <h3>Vựa thanh đa</h3>
+                    <p>33 Thanh đa, Bình Thạnh</p>
+                  </div>
+                </div>
+
+                <Link href="/" className="btn following">
+                  <BsFillPinMapFill></BsFillPinMapFill>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
