@@ -22,8 +22,6 @@ class RoleController {
                 error: err.message
             })
         }
-
-
     }
     
     static createRole = async (req, res, next) => {

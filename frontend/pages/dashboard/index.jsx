@@ -11,6 +11,9 @@ import Axios from "@/helper/axios.helper";
 import _ from "lodash";
 import { pages } from "@/utils/contanst";
 import { NextResponse } from "next/server";
+import PostDashboard from "@/components/postDashboard";
+import CreatePost from "@/components/createPost"
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export async function getServerSideProps({ req, res }) {
   const token = req.cookies["vechaitoken"];
@@ -34,13 +37,7 @@ export default function Dashboard({ userData }) {
   const [layoutPages, setLayoutPages] = useState([]);
 
   useEffect(() => {
-    const accessAppsList = accessApp.split(", ");
-    if (accessAppsList && Array.isArray(accessAppsList)) {
-      const userPages = _.filter(pages, (page) => {
-        return accessAppsList.includes(page.key);
-      });
-      setLayoutPages(userPages);
-    }
+    detectAccessPage()
   }, []);
 
   const renderContent = (roleName) => {
@@ -52,6 +49,16 @@ export default function Dashboard({ userData }) {
       return <h1>test</h1>;
     }
   };
+
+  const detectAccessPage = () => {
+    const accessAppsList = accessApp.split(", ");
+    if (accessAppsList && Array.isArray(accessAppsList)) {
+      const userPages = _.filter(pages, (page) => {
+        return accessAppsList.includes(page.key);
+      });
+      setLayoutPages(userPages);
+    }
+  }
 
   return (
     <>
@@ -347,6 +354,32 @@ function SalerComponent() {
     loading: () => <p>Loading...</p>,
   });
 
+  const [posts, setPosts] = useState([]);
+  const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    axios.get("/api/post?limit=5").then((res) => {
+      console.log(res);
+      if (res && res.data) {
+        const { data } = res.data;
+        setPosts(data);
+      }
+    });
+  }, []);
+
+  const toggle = () => setModal(!modal);
+
+  const externalCloseBtn = (
+    <button
+      type="button"
+      className="close"
+      style={{ position: 'absolute', top: '15px', right: '15px' }}
+      onClick={toggle}
+    >
+      &times;
+    </button>
+  );
+
   return (
     <>
       {/* <!-- ======Section======= --> */}
@@ -406,7 +439,7 @@ function SalerComponent() {
           <div className="nfts">
             <div className="trending heading flex flex-sb">
               <h2>Bài đăng ve chai cần bán</h2>
-              <p>Tạo bài viết</p>
+              <p onClick={toggle}>Tạo bài viết</p>
             </div>
 
             {/* <!-- ======Categories======= --> */}
@@ -434,80 +467,8 @@ function SalerComponent() {
 
             </div>
 
-            {/* <!-- =====Browse NFT===== --> */}
-            <div className="browse">
-              <div className="nft">
-                <img
-                  src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-1.jpg"
-                  alt=""
-                />
-                <div className="title">Weary Artwork</div>
-                <div className="details flex flex-sb">
-                  <div className="author flex">
-                    <img
-                      src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                      alt=""
-                    />
-                    <p>Hassnain Haider</p>
-                  </div>
-                  <div className="price">4.5 ETH</div>
-                </div>
-              </div>
-
-              <div className="nft">
-                <img
-                  src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-2.jpg"
-                  alt=""
-                />
-                <div className="title">Spectrum of Color</div>
-                <div className="details flex flex-sb">
-                  <div className="author flex">
-                    <img
-                      src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                      alt=""
-                    />
-                    <p>Hassnain Haider</p>
-                  </div>
-                  <div className="price">4 ETH</div>
-                </div>
-              </div>
-
-              <div className="nft">
-                <img
-                  src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-3.jpg"
-                  alt=""
-                />
-                <div className="title">Vivid Artwork</div>
-                <div className="details flex flex-sb">
-                  <div className="author flex">
-                    <img
-                      src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                      alt=""
-                    />
-                    <p>Hassnain Haider</p>
-                  </div>
-                  <div className="price">3.5 ETH</div>
-                </div>
-              </div>
-
-              <div className="nft">
-                <img
-                  src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-4.jpg"
-                  alt=""
-                />
-                <div className="title">Natures Love</div>
-                <div className="details flex flex-sb">
-                  <div className="author flex">
-                    <img
-                      src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                      alt=""
-                    />
-                    <p>Hassnain Haider</p>
-                  </div>
-                  <div className="price">5 ETH</div>
-                </div>
-              </div>
-            </div>
+            {/* <!-- =====Bai Viet===== --> */}
+            <PostDashboard posts={ posts }></PostDashboard>
           </div>
         </div>
 
@@ -624,6 +585,21 @@ function SalerComponent() {
         </div>
       </div>
       {/* <!-- ======End Section======= --> */}
+
+      <Modal isOpen={modal} toggle={toggle} external={externalCloseBtn}>
+        <ModalHeader><span style={{ color: "#ccc" }}>Tạo bài viết mới</span></ModalHeader>
+        <ModalBody>
+          <CreatePost></CreatePost>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" style={{ fontSize: 12 }} onClick={toggle}>
+            Hủy
+          </Button>{' '}
+          <Button color="secondary" style={{ fontSize: 12 }} onClick={toggle}>
+            Tạo
+          </Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 }
