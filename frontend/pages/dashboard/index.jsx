@@ -32,7 +32,7 @@ export async function getServerSideProps({ req, res }) {
 }
 
 export default function Dashboard({ userData }) {
-  const { fullname, name, email, accessApp } = userData; // accessApp = "dashboard, post"
+  const { id, fullname, name, email, accessApp } = userData; // accessApp = "dashboard, post"
 
   const [layoutPages, setLayoutPages] = useState([]);
 
@@ -42,7 +42,7 @@ export default function Dashboard({ userData }) {
 
   const renderContent = (roleName) => {
     if (roleName === "saler") {
-      return <SalerComponent></SalerComponent>;
+      return <SalerComponent userData={userData}></SalerComponent>;
     } else if (roleName === "buyer") {
       return <BuyerComponent></BuyerComponent>;
     } else {
@@ -70,7 +70,7 @@ export default function Dashboard({ userData }) {
       </Head>
       <main>
         <Layout pages={layoutPages} user={{ fullname, name, email }}>
-          {renderContent(name)}
+          {renderContent(name, userData)}
         </Layout>
       </main>
     </>
@@ -348,7 +348,7 @@ function BuyerComponent() {
   );
 }
 
-function SalerComponent() {
+function SalerComponent({ userData }) {
   const Map = dynamic(() => import("@/components/Map"), {
     ssr: false,
     loading: () => <p>Loading...</p>,
@@ -358,6 +358,10 @@ function SalerComponent() {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
+    refreshPosts()
+  }, []);
+
+  const refreshPosts = () => {
     axios.get("/api/post?limit=5").then((res) => {
       console.log(res);
       if (res && res.data) {
@@ -365,7 +369,7 @@ function SalerComponent() {
         setPosts(data);
       }
     });
-  }, []);
+  }
 
   const toggle = () => setModal(!modal);
 
@@ -379,6 +383,11 @@ function SalerComponent() {
       &times;
     </button>
   );
+
+  const handleCreatedCB = () => {
+    setModal(false)
+    refreshPosts()
+  }
 
   return (
     <>
@@ -431,7 +440,7 @@ function SalerComponent() {
           </div>
         </div>
       </div>
-      <div className="section flex flex-sb">
+      <div className="section flex flex-sb" style={{ alignItems: "baseline" }}>
         {/* <!-- Section Left --> */}
         <div className="section-left">
           {/* <!-- ======Banner======= --> */}
@@ -589,16 +598,8 @@ function SalerComponent() {
       <Modal isOpen={modal} toggle={toggle} external={externalCloseBtn}>
         <ModalHeader><span style={{ color: "#ccc" }}>Tạo bài viết mới</span></ModalHeader>
         <ModalBody>
-          <CreatePost></CreatePost>
+          <CreatePost userData={userData} handleCreatedCB={handleCreatedCB}></CreatePost>
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" style={{ fontSize: 12 }} onClick={toggle}>
-            Hủy
-          </Button>{' '}
-          <Button color="secondary" style={{ fontSize: 12 }} onClick={toggle}>
-            Tạo
-          </Button>
-        </ModalFooter>
       </Modal>
     </>
   );

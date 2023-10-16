@@ -23,7 +23,7 @@ export default function PostDashboard({ posts = [] }) {
       return negativeSign +
         (j ? i.substr(0, j) + thousands : '') +
         i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) +
-        (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+        (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "") + ' đ';
     } catch (e) {
       console.log(e)
     }
@@ -55,7 +55,7 @@ export default function PostDashboard({ posts = [] }) {
                         />
                         <p>{ post.fullname }</p>
                       </div>
-                      <div className="price" style={{ fontSize: 10 }}>{ formatMoney(post.expectPrice, 0) || 'Thương lượng' }</div>
+                      <div className="price" style={{ fontSize: 10 }}>{ formatMoney(post.expect_price, 0) || 'Thương lượng' }</div>
                     </div>
                   </div>
                 );

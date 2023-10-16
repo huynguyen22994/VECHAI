@@ -20,9 +20,11 @@ const storage = getStorage(app)
 class FireBaseHelper {
   static uploadFileToStorage = async (file) => {
     const time = Date.now();
+    console.log(file)
     const imageRef = ref(storage, `images/${time + file.name}`);
     const snapshot = await uploadBytes(imageRef, file)
     const downloadUrl = await getDownloadURL(snapshot.ref);
+    console.log(downloadUrl)
     return downloadUrl;
   };
 }

@@ -16,6 +16,12 @@ class PostService {
         })
     }
 
+    static createdPost = async ({ userId, name, content, image, expect_price }) => {
+        return Axios.post('/api/post/create', {
+            userId, name, content, image, expect_price
+        })
+    }
+
 }
 
 module.exports = PostService

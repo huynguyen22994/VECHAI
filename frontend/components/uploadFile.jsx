@@ -109,15 +109,16 @@ export default function UploadFile({ uploadCallBack }) {
               uploadedFile.style.cssText = "display: flex;";
               progressBar.style.width = 0;
               fileFlag = 0;
+              uploadCallBack && uploadCallBack({files})
           });
       }
       
       removeFileButton.addEventListener("click", () => {
           uploadedFile.style.cssText = "display: none;";
           fileInput.value = '';
-          uploadIcon.innerHTML = 'file_upload';
-          dragDropText.innerHTML = 'Drag & drop any file here';
-          document.querySelector(".label").innerHTML = `or <span class="browse-files"> <input type="file" class="default-file-input"/> <span class="browse-files-text">browse file</span> <span>from device</span> </span>`;
+          uploadIcon.innerHTML = 'Tải ảnh';
+          dragDropText.innerHTML = 'Kéo thả ảnh vào đây';
+          document.querySelector(".label").innerHTML = `hoặc <span class="browse-files"> <input type="file" class="default-file-input"/> <span class="browse-files-text">chọn ảnh</span> <span>từ thiết</span> </span>`;
           uploadButton.innerHTML = `Upload`;
       });
   }
@@ -127,9 +128,9 @@ export default function UploadFile({ uploadCallBack }) {
     <form class="uploadForm form-container" enctype='multipart/form-data'>
         <div class="upload-files-container">
             <div class="drag-file-area">
-                <span class="material-icons-outlined upload-icon"> file_upload </span>
-                <h3 class="dynamic-message"> Drag & drop any file here </h3>
-                <label class="label"> or <span class="browse-files"> <input type="file" class="default-file-input"/> <span class="browse-files-text">browse file</span> <span>from device</span> </span> </label>
+                <span class="material-icons-outlined upload-icon"> Tải ảnh </span>
+                <h3 class="dynamic-message"> Kéo thả ảnh vào đây </h3>
+                <label class="label"> hoặc <span class="browse-files"> <input type="file" class="default-file-input"/> <span class="browse-files-text">Chọn ảnh</span> <span>từ thiết bị</span> </span> </label>
             </div>
             <span class="cannot-upload-message"> <span class="material-icons-outlined">error</span> Please select a file first <span class="material-icons-outlined cancel-alert-button">cancel</span> </span>
             <div class="file-block">
