@@ -16,6 +16,7 @@ import CreatePost from "@/components/createPost"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export async function getServerSideProps({ req, res }) {
+  const nonce = req.headers['x-nonce']
   const token = req.cookies["vechaitoken"];
   const { data } = await Axios({
     url: "/api/customer/getbytoken",
@@ -27,11 +28,12 @@ export async function getServerSideProps({ req, res }) {
   return {
     props: {
       userData: data[0],
+      nonce
     },
   };
 }
 
-export default function Dashboard({ userData }) {
+export default function Dashboard({ userData, nonce }) {
   const { id, fullname, name, email, accessApp } = userData; // accessApp = "dashboard, post"
 
   const [layoutPages, setLayoutPages] = useState([]);
@@ -68,7 +70,7 @@ export default function Dashboard({ userData }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="ico" href="/favicon.ico"></link>
       </Head>
-      <main>
+            <main>
         <Layout pages={layoutPages} user={{ fullname, name, email }}>
           {renderContent(name, userData)}
         </Layout>
