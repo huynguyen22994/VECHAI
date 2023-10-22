@@ -45,5 +45,11 @@ const pages = [
     icon: <BsFillBellFill></BsFillBellFill>,
     href: "/dashboard/post",
   },
+  {
+    key: "scrapyardmgmt",
+    name: "Quản lý vựa",
+    icon: <BsFillBellFill></BsFillBellFill>,
+    href: "/dashboard/scrapyardmgmt",
+  },
 ];
 export { pages };
